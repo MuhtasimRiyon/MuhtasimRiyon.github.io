@@ -1,0 +1,34 @@
+.navbg{
+    background-color: olivedrab;
+}
+
+.banner-container{
+    background-color: black;
+    color: chartreuse;
+}
+
+.stdAtAiub{
+    font-family: 'Vujahday Script', cursive;
+    color: chartreuse;
+}
+
+.about-container{
+    background-color:darkorchid;
+}
+
+.projects-container{
+    background-color:dimgray;
+}
+
+.skills-containers{
+    background-color:slateblue;
+}
+
+.Footer-contains{
+    background-color: olivedrab;
+    padding: 10px;
+}
+
+i{ 
+    color :darkred;
+}
