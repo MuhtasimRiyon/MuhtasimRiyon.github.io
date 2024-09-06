@@ -522,6 +522,10 @@ h3.skill-title {
   margin: 35px;
 }
 
+.framework_div .col-lg-3 {
+  margin: 35px;
+}
+
 .skill-card {
   border-radius: 40px;
   position: relative;
