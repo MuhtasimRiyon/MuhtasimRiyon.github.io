@@ -22,7 +22,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Edu QLD Beginner',"Raleway", sans-serif;
+  /* font-family: 'Edu QLD Beginner',"Raleway", sans-serif; */
+  font-family: 'Edu QLD Beginner';
 }
 
 /*--------------------------------------------------------------
