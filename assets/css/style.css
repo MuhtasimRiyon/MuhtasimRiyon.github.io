@@ -4,7 +4,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: white;
-  background-color: black;
+  background-color: #222;
 }
 
 a {
@@ -22,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Edu QLD Beginner',"Raleway", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -291,7 +291,7 @@ h6 {
   color: white;
   margin: 15px 0 0 0;
   font-size: 26px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Edu QLD Beginner', "Poppins", sans-serif;
 }
 
 #hero p span {
@@ -585,6 +585,7 @@ h3.skill-title {
 
 .skill-card .skill-card__body .skill-card__title {
   padding-top: 20px;
+  padding-left: 10px;
   color: black;
   font-size: 1.4em;
   font-weight: 600;
@@ -619,7 +620,7 @@ h3.skill-title {
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Edu QLD Beginner', "Poppins", sans-serif;
   color: #00A884;
   margin-bottom: 10px;
 }
@@ -1261,7 +1262,7 @@ h3.skill-title {
   font-size: 36px;
   font-weight: 700;
   position: relative;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Edu QLD Beginner', "Poppins", sans-serif;
   padding: 0;
   margin: 0 0 15px 0;
 }
