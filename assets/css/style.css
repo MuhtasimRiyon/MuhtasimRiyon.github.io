@@ -426,6 +426,38 @@ section {
   margin-bottom: 0;
 }
 
+.about-menu-box {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-menu-box ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.about-menu-box li {
+  position: relative;
+  padding: 0 0 8px 20px;
+  color: #f4f4f4;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.about-menu-box li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #00A884;
+}
+
+@media (max-width: 575px) {
+  .about-menu-box li {
+    font-size: 15px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Facts
 --------------------------------------------------------------*/
