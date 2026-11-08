@@ -1,0 +1,10 @@
+
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/muhtasim/public_html/
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /bin/cp index.html "$DEPLOYPATH"
+    - /bin/cp portfolio-details.html "$DEPLOYPATH"
+    - /bin/cp -R assets "$DEPLOYPATH"
+    - /bin/cp -R forms "$DEPLOYPATH"
