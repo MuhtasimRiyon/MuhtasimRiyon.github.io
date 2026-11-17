@@ -1,0 +1,380 @@
+/* The original stylesheet remains the default dark palette. */
+:root {
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page-background: #f5f6f8;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 76px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  min-height: 44px;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 28px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-toggle:focus,
+.theme-toggle:active,
+.theme-toggle:focus-visible {
+  outline: none;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.theme-toggle__sky {
+  position: relative;
+  display: block;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #172846, #344f78);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle__sky::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #83c9df, #c8e9eb);
+  opacity: 0;
+}
+
+.theme-toggle__stars {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 12px 12px, #fff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 27px 8px, #e0eafa 0 1px, transparent 1.5px),
+    radial-gradient(circle at 22px 26px, #fff 0 1px, transparent 1.5px),
+    radial-gradient(circle at 8px 25px, #e0eafa 0 0.7px, transparent 1.2px);
+}
+
+.theme-toggle__cloud {
+  position: absolute;
+  right: 7px;
+  bottom: 8px;
+  width: 27px;
+  height: 7px;
+  border-radius: 10px;
+  background: #fff;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.theme-toggle__cloud::before,
+.theme-toggle__cloud::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.theme-toggle__cloud::before {
+  left: 4px;
+  width: 12px;
+  height: 12px;
+}
+
+.theme-toggle__cloud::after {
+  right: 4px;
+  width: 9px;
+  height: 9px;
+}
+
+.theme-toggle__orb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #e2e9f5;
+  color: #617591;
+  transform: translateX(36px) rotate(0deg);
+  box-shadow: 0 1px 5px rgba(7, 20, 40, 0.2);
+}
+
+.theme-toggle__orb svg {
+  position: absolute;
+  inset: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle__sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.4);
+}
+
+.theme-toggle__moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+[data-theme="light"] .theme-toggle__sky::before {
+  opacity: 1;
+}
+
+[data-theme="light"] .theme-toggle__stars {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+[data-theme="light"] .theme-toggle__cloud {
+  opacity: 0.95;
+  transform: translateY(0);
+}
+
+[data-theme="light"] .theme-toggle__orb {
+  background: #ffe4a0;
+  color: #ac680e;
+  transform: translateX(0) rotate(0deg);
+  box-shadow: 0 0 10px rgba(255, 210, 102, 0.45);
+}
+
+[data-theme="light"] .theme-toggle__sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+[data-theme="light"] .theme-toggle__moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.4);
+}
+
+.theme-ready .theme-toggle,
+.theme-ready .theme-toggle__sky::before,
+.theme-ready .theme-toggle__stars,
+.theme-ready .theme-toggle__cloud,
+.theme-ready .theme-toggle__orb,
+.theme-ready .theme-toggle__orb svg {
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 450ms ease, background-color 450ms ease,
+    color 450ms ease, border-color 450ms ease, box-shadow 450ms ease;
+}
+
+.theme-ready body,
+.theme-ready .section-bg,
+.theme-ready #skills,
+.theme-ready .skill-card,
+.theme-ready #footer {
+  transition: background-color 400ms ease, color 400ms ease,
+    border-color 400ms ease, box-shadow 400ms ease, transform 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-ready .theme-toggle,
+  .theme-ready .theme-toggle *,
+  .theme-ready .theme-toggle *::before,
+  .theme-ready .theme-toggle *::after,
+  .theme-ready body,
+  .theme-ready .section-bg,
+  .theme-ready #skills,
+  .theme-ready .skill-card,
+  .theme-ready #footer {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .theme-toggle {
+    right: 64px;
+  }
+
+}
+
+[data-theme="light"] body {
+  background-color: var(--page-background);
+  color: #364152;
+}
+
+[data-theme="light"] main > section,
+[data-theme="light"] .section-bg,
+[data-theme="light"] #skills {
+  background-color: var(--page-background);
+}
+
+[data-theme="light"] a,
+[data-theme="light"] #hero p span,
+[data-theme="light"] .about .content h3,
+[data-theme="light"] .about .content ul i,
+[data-theme="light"] .resume .resume-item h4,
+[data-theme="light"] .skill-group__icon {
+  color: #00775d;
+}
+
+[data-theme="light"] a:hover {
+  color: #005440;
+}
+
+[data-theme="light"] #hero {
+  background-color: var(--page-background);
+  background-image: linear-gradient(90deg, var(--page-background) 0%, rgba(245, 246, 248, 0.99) 40%, rgba(245, 246, 248, 0.96) 65%, rgba(245, 246, 248, 0.65) 100%),
+    url("../img/The-Importance-of-Model-Based-Design-in-Embedded-Systems.png");
+  background-position: center, 70% center;
+  border-bottom: 1px solid #dce1e7;
+}
+
+[data-theme="light"] #hero > .container {
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="light"] #hero h1 {
+  color: #142238;
+}
+
+[data-theme="light"] #hero p a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+[data-theme="light"] #hero button {
+  margin-top: 26px;
+  padding: 13px 28px;
+  background: #00775d;
+  box-shadow: 0 6px 18px rgba(0, 119, 93, 0.15);
+}
+
+[data-theme="light"] #hero button:hover {
+  background: #005440;
+}
+
+[data-theme="light"] #hero .social-links {
+  margin-top: 28px;
+}
+
+[data-theme="light"] #hero .social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-right: 8px;
+  border: 1px solid #dce1e7;
+  border-radius: 50%;
+  background: #fafbfc;
+}
+
+[data-theme="light"] #hero p,
+[data-theme="light"] #hero .social-links a,
+[data-theme="light"] .section-title h2,
+[data-theme="light"] .about-menu-box li,
+[data-theme="light"] .skill-group__heading h3,
+[data-theme="light"] .skill-card__title {
+  color: #253247;
+}
+
+[data-theme="light"] .section-title p {
+  color: #576579;
+}
+
+[data-theme="light"] .section-title h2::before {
+  background: #dce1e7;
+}
+
+[data-theme="light"] #hero .social-links a:hover {
+  color: #00775d;
+}
+
+[data-theme="light"] .skills .skills-intro,
+[data-theme="light"] .skill-group__count,
+[data-theme="light"] .skill-card__description {
+  color: #576579;
+}
+
+[data-theme="light"] .skill-group__heading::after {
+  background: #dce1e7;
+}
+
+[data-theme="light"] .skill-card {
+  background: #fafbfc;
+  border-color: #dce1e7;
+  box-shadow: 0 4px 16px rgba(25, 40, 60, 0.04);
+}
+
+/* Keep the established green icon tiles and their white glyphs. */
+[data-theme="light"] .skill-card:hover {
+  border-color: #00775d;
+}
+
+[data-theme="light"] .nav-menu a {
+  background: #fafbfc;
+  color: #576579;
+  box-shadow: 0 2px 12px rgba(20, 34, 56, 0.06);
+}
+
+[data-theme="light"] .nav-menu a:hover,
+[data-theme="light"] .nav-menu .active > a,
+[data-theme="light"] .nav-menu li:hover > a {
+  background: #00775d;
+}
+
+[data-theme="light"] .resume .resume-item h5 {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #e7ecf2;
+  color: #364152;
+}
+
+[data-theme="light"] #footer {
+  background: var(--page-background);
+  border-top: 1px solid #dce1e7;
+  color: #576579;
+}
+
+[data-theme="light"] #footer h3 {
+  color: #142238;
+}
+
+[data-theme="light"] #hero button,
+[data-theme="light"] .back-to-top,
+[data-theme="light"] #footer .social-links a,
+[data-theme="light"] .nav-menu a:hover,
+[data-theme="light"] .nav-menu .active > a,
+[data-theme="light"] .nav-menu .active > a:hover {
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  [data-theme="light"] #hero {
+    background-image: linear-gradient(rgba(245, 246, 248, 0.97), rgba(245, 246, 248, 0.97)),
+      url("../img/The-Importance-of-Model-Based-Design-in-Embedded-Systems.png");
+  }
+
+}
+
+@media (max-width: 420px) {
+  [data-theme="light"] #hero .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  [data-theme="light"] #hero .social-links a {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    margin-right: 0;
+  }
+}

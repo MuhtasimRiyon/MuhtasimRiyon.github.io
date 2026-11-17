@@ -1,0 +1,11 @@
+# Include only files needed to serve the portfolio and build the image.
+**
+!Dockerfile
+!docker/
+!docker/apache.conf
+!*.html
+!assets/
+!assets/**
+!forms/
+!forms/**
+**/.DS_Store

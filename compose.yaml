@@ -1,0 +1,27 @@
+name: muhtasim-portfolio
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "127.0.0.1:${DOCKER_APP_PORT:-8081}:80"
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /var/www/html
+          initial_sync: true
+          ignore:
+            - Dockerfile
+            - docker/
+        - action: rebuild
+          path: Dockerfile
+        - action: rebuild
+          path: docker/apache.conf
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1/index.html') === false ? 1 : 0);"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
