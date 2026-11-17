@@ -24,6 +24,12 @@
   }
 
   // Smooth scroll for the navigation menu and links with .scrollto classes
+  function closeMobileNav() {
+    $('body').removeClass('mobile-nav-active');
+    $('.mobile-nav-toggle').attr('aria-expanded', 'false')
+      .find('i').removeClass('icofont-close').addClass('icofont-navigation-menu');
+  }
+
   $(document).on('click', '.nav-menu a, .scrollto', function(e) {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);
@@ -42,8 +48,7 @@
         }
 
         if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+          closeMobileNav();
         }
         return false;
       }
@@ -65,6 +70,7 @@
 
   $(document).on('click', '.mobile-nav-toggle', function(e) {
     $('body').toggleClass('mobile-nav-active');
+    $(this).attr('aria-expanded', $('body').hasClass('mobile-nav-active') ? 'true' : 'false');
     $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
   });
 
@@ -72,10 +78,20 @@
     var container = $(".mobile-nav-toggle");
     if (!container.is(e.target) && container.has(e.target).length === 0) {
       if ($('body').hasClass('mobile-nav-active')) {
-        $('body').removeClass('mobile-nav-active');
-        $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+        closeMobileNav();
       }
     }
+  });
+
+  $(document).on('keydown', function(e) {
+    if (e.key === 'Escape' && $('body').hasClass('mobile-nav-active')) {
+      closeMobileNav();
+      $('.mobile-nav-toggle').trigger('focus');
+    }
+  });
+
+  $(window).on('resize', function() {
+    if (window.innerWidth >= 992) closeMobileNav();
   });
 
   // Navigation active state on scroll
