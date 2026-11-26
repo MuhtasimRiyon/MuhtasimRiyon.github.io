@@ -156,31 +156,73 @@
     });
   }
 
-  // Porfolio isotope and filter
-  $(window).on('load', function() {
-    var portfolioIsotope = $('.portfolio-container').isotope({
-      itemSelector: '.portfolio-item'
+  const portfolio = document.getElementById('portfolio');
+  if (portfolio) {
+    const dialog = portfolio.querySelector('.portfolio-dialog');
+    const galleryImage = dialog.querySelector('.portfolio-gallery img');
+    const galleryCaption = dialog.querySelector('.portfolio-gallery figcaption');
+    const galleryControls = dialog.querySelector('.portfolio-gallery-controls');
+    const galleryOriginal = dialog.querySelector('.portfolio-gallery-original');
+    let screenshots = [];
+    let screenshotIndex = 0;
+    let detailsButton;
+
+    portfolio.querySelectorAll('[data-project-count]').forEach(function(label) {
+      const group = label.closest('.portfolio-group') || portfolio;
+      const count = group.querySelectorAll('.portfolio-card').length;
+      label.textContent = count + (count === 1 ? ' project' : ' projects');
+      label.hidden = false;
     });
 
-    $('#portfolio-flters li').on('click', function() {
-      $("#portfolio-flters li").removeClass('filter-active');
-      $(this).addClass('filter-active');
+    function showScreenshot() {
+      const screenshot = screenshots[screenshotIndex];
+      galleryImage.alt = screenshot.textContent;
+      galleryImage.src = screenshot.href;
+      galleryOriginal.href = screenshot.href;
+      galleryCaption.textContent = screenshots.length === 1
+        ? screenshot.textContent
+        : (screenshotIndex + 1) + ' / ' + screenshots.length + ' · ' + screenshot.textContent;
+    }
 
-      portfolioIsotope.isotope({
-        filter: $(this).data('filter')
-      });
-      aos_init();
+    portfolio.addEventListener('click', function(event) {
+      const button = event.target.closest('[data-project-details]');
+      if (!button) return;
+
+      const card = button.closest('.portfolio-card');
+      detailsButton = button;
+      dialog.querySelector('.portfolio-dialog-group').textContent = card.closest('.portfolio-group').querySelector('h3').textContent;
+      dialog.querySelector('#portfolio-dialog-title').textContent = card.querySelector('h4').textContent;
+      dialog.querySelector('#portfolio-dialog-description').textContent = card.querySelector('.portfolio-description').textContent;
+      dialog.querySelector('.portfolio-dialog-visit').href = card.querySelector('.portfolio-visit').href;
+      screenshots = Array.from(card.querySelectorAll('.portfolio-screenshots a'));
+      screenshotIndex = 0;
+      galleryControls.hidden = screenshots.length < 2;
+      showScreenshot();
+      dialog.showModal();
+      dialog.scrollTop = 0;
+      document.body.classList.add('portfolio-dialog-open');
     });
 
-    // Initiate venobox (lightbox feature used in portofilo)
-    $('.venobox').venobox({
-      'share': false
+    galleryControls.addEventListener('click', function(event) {
+      const button = event.target.closest('[data-gallery-step]');
+      if (!button) return;
+
+      const step = Number(button.dataset.galleryStep);
+      screenshotIndex = (screenshotIndex + step + screenshots.length) % screenshots.length;
+      showScreenshot();
     });
 
-    // Initiate aos_init() function
-    aos_init();
+    dialog.addEventListener('click', function(event) {
+      if (event.target === dialog) dialog.close();
+    });
 
-  });
+    dialog.addEventListener('close', function() {
+      document.body.classList.remove('portfolio-dialog-open');
+      detailsButton.focus({ preventScroll: true });
+    });
+  }
+
+  $(window).on('load', aos_init);
 
   // Testimonials carousel (uses the Owl Carousel library)
   $(".testimonials-carousel").owlCarousel({
